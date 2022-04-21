@@ -105,7 +105,8 @@ int main()
 
     //Расчёт гистограммы
     const auto bins = make_histogram(numbers, bin_count);
+    const auto proc = procent (number_count, bins);
 
     //Вывод данных
-    show_histogram_svg(bins);
+    show_histogram_svg(bins, proc);
 }
