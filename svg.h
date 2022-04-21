@@ -13,4 +13,4 @@ void svg_rect (double x, double y, double width, double height, string stroke = 
 
 void svg_end();
 
-void show_histogram_svg(const vector<size_t>& bins);
+void show_histogram_svg(const vector<size_t>& bins, const vector<size_t>& proc);
