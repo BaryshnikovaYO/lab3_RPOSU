@@ -1,5 +1,6 @@
 #include "svg.h"
 #include <iostream>
+#include <vector>
 #include <math.h>
 
 void
@@ -32,7 +33,7 @@ void svg_rect(double x, double y, double width, double height, string stroke, st
 }
 
 void
-show_histogram_svg(const vector<size_t>& bins)
+show_histogram_svg(const vector<size_t>& bins, const vector<size_t>& proc)
 {
     const auto IMAGE_WIDTH = 400;
     const auto IMAGE_HEIGHT = 300;
@@ -41,10 +42,11 @@ show_histogram_svg(const vector<size_t>& bins)
     const auto TEXT_WIDTH = 50;
     const auto BIN_HEIGHT = 30;
     const auto BLOCK_WIDTH = 10;
+    const auto PROCENT = 50;
 
     svg_begin(IMAGE_WIDTH, IMAGE_HEIGHT);
 
-    const auto MAX_BIN_WIDTH = IMAGE_WIDTH - TEXT_WIDTH;
+    const auto MAX_BIN_WIDTH = IMAGE_WIDTH - TEXT_WIDTH - PROCENT;
 
     size_t max_bins_width = bins[0];
     for (size_t bin : bins)
@@ -58,16 +60,17 @@ show_histogram_svg(const vector<size_t>& bins)
     max_bins_width = max_bins_width * BLOCK_WIDTH;
 
     double top = 0;
-    for (size_t bin : bins)
+    for (size_t i = 0; i < bins.size(); i++)
     {
-        double bin_width = BLOCK_WIDTH * bin;
+        double bin_width = BLOCK_WIDTH * bins[i];
         if (max_bins_width >= MAX_BIN_WIDTH)
         {
             bin_width = MAX_BIN_WIDTH * (bin_width / max_bins_width) - 1;
         }
 
-        svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin));
-        svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT, "black");
+        svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bins[i]));
+        svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT, "black", "blue");
+        svg_text (MAX_BIN_WIDTH, top + TEXT_BASELINE, to_string(proc[i]) + '%');
         top += BIN_HEIGHT;
 
     }
