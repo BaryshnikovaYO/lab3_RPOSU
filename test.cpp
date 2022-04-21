@@ -51,6 +51,22 @@ void test_void()
     return;
 }
 
+void test1()
+{
+    vector <size_t> z = {20, 28, 52};
+    vector <size_t> y = procent (25, {5,7,13});
+    assert(z == y);
+    return;
+}
+
+void test2()
+{
+    vector <size_t> z = {100};
+    vector <size_t> y = procent (1, {2});
+    assert(z == y);
+    return;
+}
+
 int
 main() {
     test_positive();
@@ -58,4 +74,5 @@ main() {
     test_odinak();
     test_one();
     test_void();
+    test1();
 }
