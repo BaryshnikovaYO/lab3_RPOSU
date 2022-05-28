@@ -1,4 +1,5 @@
 #include "histogram.h"
+#include <iostream>
 
 #include <cassert>
 
@@ -62,7 +63,8 @@ void test1()
 void test2()
 {
     vector <size_t> z = {100};
-    vector <size_t> y = procent (1, {2});
+    vector <size_t> y = procent (1, {1});
+    cout << y[0];
     assert(z == y);
     return;
 }
@@ -75,4 +77,5 @@ main() {
     test_one();
     test_void();
     test1();
+    test2();
 }
